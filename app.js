@@ -4,6 +4,7 @@
 
 const express = require('express');
 const path = require('path');
+const bodyParser = require('body-parser');
 
 const helpers = require('./helpers');
 const routes = require('./routes/index');
@@ -18,6 +19,9 @@ app.use((req, res, next) => {
     res.locals.h = helpers;
     next();
 });
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/', routes);
 
