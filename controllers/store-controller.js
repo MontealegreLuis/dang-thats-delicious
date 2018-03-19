@@ -29,6 +29,7 @@ exports.editStore = async (request, response) => {
 };
 
 exports.updateStore = async (request, response) => {
+    request.body.location.type = 'Point'; // Otherwise geolocation queries won't work
     const store = await Store.findOneAndUpdate({_id: request.params.id}, request.body, {
         new: true,
         runValidators: true
