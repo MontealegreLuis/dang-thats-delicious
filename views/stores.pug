@@ -4,6 +4,6 @@ include mixins/_store-card
 
 block content
     h2= title
-    .stores
+    .row
         each store in stores
             +storeCard(store)
