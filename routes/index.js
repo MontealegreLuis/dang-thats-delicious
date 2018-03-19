@@ -7,7 +7,8 @@ const router = express.Router();
 const {errorHandler} = require('../handlers/errors');
 const storeController = require('../controllers/store-controller');
 
-router.get('/', storeController.homePage);
+router.get('/', errorHandler(storeController.viewStores));
+router.get('/stores', errorHandler(storeController.viewStores));
 router.get('/stores/add', storeController.addStore);
 router.post('/stores/add', errorHandler(storeController.saveStore));
 

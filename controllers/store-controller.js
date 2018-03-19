@@ -17,3 +17,8 @@ exports.saveStore = async (request, response) => {
     await store.save();
     response.redirect('/');
 };
+
+exports.viewStores = async (request, response) => {
+    const stores = await Store.find();
+    response.render('stores', {title: 'Stores', stores});
+};
