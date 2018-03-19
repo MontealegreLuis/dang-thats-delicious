@@ -5,6 +5,30 @@ mixin storeForm(store = {})
     .form-group
         label(for="description") Description
         textarea(name="description" placeholder="Store's description" class="form-control")= store.description
+    .form-group
+        label(for="address") Address
+        input(
+            id="address"
+            name="location[address]"
+            class="form-control"
+            value=(store.location && store.location.address)
+        )
+    .form-group
+        label(for="lng") Address Lng
+        input(
+            id="lng"
+            name="location[coordinates][0]"
+            class="form-control"
+            value=(store.location && store.location.coordinates[0])
+        )
+    .form-group
+        label(for="lat") Address Lat
+        input(
+            id="lat"
+            name="location[coordinates][1]"
+            class="form-control"
+            value=(store.location && store.location.coordinates[1])
+        )
     - const choices = ['Wifi', 'Open late', 'Family friendly', 'Vegetarian', 'Licensed']
     - const tags = store.tags || []
     ul.list-group

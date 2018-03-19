@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 
 const helpers = require('./helpers');
+const errorHandlers = require('./handlers/errors');
 const routes = require('./routes/index');
 
 const app = express();
@@ -42,5 +43,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/', routes);
+app.use(errorHandlers.flashValidationErrors);
 
 module.exports = app;

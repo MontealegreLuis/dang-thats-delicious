@@ -44,7 +44,7 @@ html
 
         block messages
             if locals.flashes
-                .container
+                .container.mt-3
                     - const categories = Object.keys(locals.flashes)
                     each category in categories
                         each message in flashes[category]
