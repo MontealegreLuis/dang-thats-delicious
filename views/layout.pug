@@ -42,6 +42,17 @@ html
                     span(class="fa fa-user")
                     a(href="#") Login
 
+        block messages
+            if locals.flashes
+                .container
+                    - const categories = Object.keys(locals.flashes)
+                    each category in categories
+                        each message in flashes[category]
+                            div(class=`alert alert-${category} alert-dismissible fade show`)
+                                p !{message}
+                                button(type="button" class="close" data-dismiss="alert" aria-label="Close")
+                                    span(aria-hidden="true") &times;
+
         .container
             block content
 

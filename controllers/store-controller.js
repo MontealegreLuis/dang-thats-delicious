@@ -9,7 +9,7 @@ exports.homePage = (request, response) => {
 };
 
 exports.addStore = (request, response) => {
-    response.render('store-form', {title: 'Add a store'});
+    response.render('add-store', {title: 'Add a store'});
 };
 
 exports.saveStore = async (request, response) => {
@@ -21,4 +21,21 @@ exports.saveStore = async (request, response) => {
 exports.viewStores = async (request, response) => {
     const stores = await Store.find();
     response.render('stores', {title: 'Stores', stores});
+};
+
+exports.editStore = async (request, response) => {
+    const store = await Store.findById(request.params.id);
+    response.render('edit-store', {title: `Edit ${store.name}`, store});
+};
+
+exports.updateStore = async (request, response) => {
+    const store = await Store.findOneAndUpdate({_id: request.params.id}, request.body, {
+        new: true,
+        runValidators: true
+    }).exec();
+    request.flash(
+        'success',
+        `Successfully updated <strong>${store.name}</strong>. <a href="/stores/${store.slug}">View store</a>`
+    );
+    response.redirect(`/stores/${store._id}/edit`);
 };

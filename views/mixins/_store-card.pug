@@ -6,3 +6,6 @@ mixin storeCard(store = {})
                 h2.card-title
                     a(href=`/store/${store.slug}`) #{store.name}
                 p(class="card-text")= store.description.split(' ').slice(0, 25).join(' ')
+                a(href=`/stores/${store._id}/edit` class="btn btn-primary")
+                    span(class="fa fa-pencil")
+                    | Edit
