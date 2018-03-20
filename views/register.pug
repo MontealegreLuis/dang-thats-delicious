@@ -1,0 +1,11 @@
+extends layout
+
+include mixins/_register-form
+
+block content
+    .container
+        h2 Register
+        .row
+            .col-12
+                .card.p-3
+                    +registrationForm()

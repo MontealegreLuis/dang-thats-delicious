@@ -9,6 +9,7 @@ const MongoStore = require('connect-mongo')(session);
 const path = require('path');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
+const expressValidator = require('express-validator');
 
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errors');
@@ -24,6 +25,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(expressValidator());
 
 app.use(session({
     secret: process.env.SECRET,
