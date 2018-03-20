@@ -33,29 +33,30 @@ html
                 ul(class="navbar-nav mr-auto")
                     li(class="nav-item active")
                         a(class="nav-link" href="/stores")
-                            span(class="fa fa-home")
+                            span(class="fa fa-home pr-1")
                             | Stores
                     if user
                         li(class="nav-item")
                             a(class="nav-link" href="/stores/add")
-                                span(class="fa fa-plus")
+                                span(class="fa fa-plus pr-1")
                                 | Add
                     li(class="nav-item")
                         a(class="nav-link" href="/tags")
-                            span(class="fa fa-tag")
+                            span(class="fa fa-tag pr-1")
                             | Tags
                 if !user
                     span(class="navbar-text")
+                        span(class="fa fa-user-plus pr-1")
                         a(href="/register") Register
                     span(class="navbar-text")
-                        span(class="fa fa-user")
+                        span(class="fa fa-user pl-2 pr-1")
                         a(href="/login") Login
                 else
                     span(class="navbar-text")
-                        span(class="fa fa-sign-out")
+                        span(class="fa fa-sign-out pr-1")
                         a(href="/logout") Logout
                     span(class="navbar-text")
-                        a(href="/account")
+                        a(href="/account" class="pl-2")
                             img(src=user.gravatar + '&d=retro')
 
         block messages
