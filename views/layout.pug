@@ -53,6 +53,9 @@ html
                     span(class="navbar-text")
                         span(class="fa fa-sign-out")
                         a(href="/logout") Logout
+                    span(class="navbar-text")
+                        a(href="/account")
+                            img(src=user.gravatar + '&d=retro')
 
         block messages
             if locals.flashes
