@@ -4,6 +4,6 @@ include mixins/_store-form
 
 block content
     h2= title
-    form(action=`/stores/${store._id}/edit` method="post")
+    form(action=`/stores/${store._id}/edit` method="post" enctype="multipart/form-data")
         +storeForm(store)
         input(type="submit" class="btn btn-secondary mt-3" value="Update store")

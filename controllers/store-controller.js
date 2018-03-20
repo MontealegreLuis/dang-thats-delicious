@@ -3,6 +3,20 @@
  */
 const mongoose = require('mongoose');
 const Store = mongoose.model('Store');
+const multer = require('multer');
+const jimp = require('jimp');
+const uuid = require('uuid');
+
+const multerOptions = {
+    storage: multer.memoryStorage(),
+    fileFilter(request, file, next) {
+        const isPhoto = file.mimetype.startsWith('image/');
+
+        if (isPhoto) return next(null, true);
+
+        return next({message: `File type ${file.mimetype} isn't allowed`}, false);
+    }
+};
 
 exports.homePage = (request, response) => {
     response.render('hello');
@@ -10,6 +24,19 @@ exports.homePage = (request, response) => {
 
 exports.addStore = (request, response) => {
     response.render('add-store', {title: 'Add a store'});
+};
+
+exports.upload = multer(multerOptions).single('photo');
+exports.resize = async (request, response, next) => {
+    if (!request.file) return next();
+
+    const extension = request.file.mimetype.split('/')[1];
+    request.body.photo = `${uuid.v4()}.${extension}`;
+
+    const photo = await jimp.read(request.file.buffer);
+    await photo.resize(800, jimp.AUTO);
+    await photo.write(`./public/uploads/${request.body.photo}`);
+    next();
 };
 
 exports.saveStore = async (request, response) => {

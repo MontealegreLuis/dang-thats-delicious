@@ -10,8 +10,18 @@ const storeController = require('../controllers/store-controller');
 router.get('/', errorHandler(storeController.viewStores));
 router.get('/stores', errorHandler(storeController.viewStores));
 router.get('/stores/add', storeController.addStore);
-router.post('/stores/add', errorHandler(storeController.saveStore));
+router.post(
+    '/stores/add',
+    storeController.upload,
+    errorHandler(storeController.resize),
+    errorHandler(storeController.saveStore)
+);
 router.get('/stores/:id/edit', errorHandler(storeController.editStore));
-router.post('/stores/:id/edit', errorHandler(storeController.updateStore));
+router.post(
+    '/stores/:id/edit',
+    storeController.upload,
+    errorHandler(storeController.resize),
+    errorHandler(storeController.updateStore)
+);
 
 module.exports = router;
