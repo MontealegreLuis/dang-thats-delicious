@@ -1,5 +1,7 @@
 extends layout
 
+include mixins/_store-card
+
 block content
     .container
         h2 #{currentTag || 'Tags'}
@@ -9,3 +11,6 @@ block content
                     a.tag-link(href=`/tags/${tag._id}` class=(tag._id === currentTag ? 'tag-link-active' : ''))
                         span.tag-text ##{tag._id}
                         span.tag-count ##{tag.count}
+        .row
+            each store in stores
+                +storeCard(store)

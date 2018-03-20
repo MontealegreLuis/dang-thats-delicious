@@ -73,7 +73,12 @@ exports.viewStore = async (request, response, next) => {
 };
 
 exports.viewStoresByTag = async (request, response) => {
-    const tags = await Store.tagsSummary();
     const currentTag = request.params.tag;
-    response.render('tag', {tags, title: 'Tags', currentTag});
+    const tagCriteria = currentTag || {$exists: true};
+
+    const tagsPromise = await Store.tagsSummary();
+    const storesPromise = await Store.find({tags: tagCriteria});
+    const [tags, stores] = await Promise.all([tagsPromise, storesPromise]);
+
+    response.render('tag', {tags, title: 'Tags', currentTag, stores});
 };
