@@ -7,6 +7,7 @@ const router = express.Router();
 const {errorHandler} = require('../handlers/errors');
 const storeController = require('../controllers/store-controller');
 const userController = require('../controllers/user-controller');
+const authController = require('../controllers/auth-controller');
 
 router.get('/', errorHandler(storeController.viewStores));
 router.get('/stores', errorHandler(storeController.viewStores));
@@ -29,6 +30,12 @@ router.get('/tags', errorHandler(storeController.viewStoresByTag));
 router.get('/tags/:tag', errorHandler(storeController.viewStoresByTag));
 
 router.get('/register', userController.showRegistrationForm);
-router.post('/register', userController.validateNewUser, userController.showRegistrationForm);
+router.post(
+    '/register',
+    userController.validateNewUser,
+    errorHandler(userController.registerUser),
+    authController.login
+);
+router.get('/login', userController.showLoginForm);
 
 module.exports = router;

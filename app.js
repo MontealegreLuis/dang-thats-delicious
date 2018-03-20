@@ -10,10 +10,13 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const expressValidator = require('express-validator');
+const cookieParser = require('cookie-parser');
+const passport = require('passport');
 
 const helpers = require('./helpers');
 const errorHandlers = require('./handlers/errors');
 const routes = require('./routes/index');
+require('./handlers/passport');
 
 const app = express();
 
@@ -28,6 +31,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(expressValidator());
 
+app.use(cookieParser());
+
 app.use(session({
     secret: process.env.SECRET,
     key: process.env.KEY,
@@ -35,6 +40,9 @@ app.use(session({
     saveUninitialized: false,
     store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use(flash());
 
