@@ -44,5 +44,15 @@ router.post(
 router.get('/login', userController.showLoginForm);
 router.post('/login', authController.login);
 router.get('/logout', authController.logout);
+router.get(
+    '/account',
+    authController.isLoggedIn,
+    userController.account
+);
+router.post(
+    '/account',
+    authController.isLoggedIn,
+    errorHandler(userController.updateAccount)
+);
 
 module.exports = router;

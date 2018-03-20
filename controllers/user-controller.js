@@ -40,3 +40,22 @@ exports.registerUser = async (request, response, next) => {
 exports.showLoginForm = (request, response) => {
     response.render('login', {title: 'Login'});
 };
+
+exports.account = (request, response) => {
+    response.render('account', {title: 'Edit your account'});
+};
+
+exports.updateAccount = async (request, response) => {
+    const updates = {
+        name: request.body.name,
+        email: request.body.email
+    };
+
+    const user = await User.findOneAndUpdate(
+        {_id: request.user._id},
+        {$set: updates},
+        {new: true, runValidators: true, context: 'query'}
+    );
+    request.flash('success', 'Your account has been updated!');
+    response.redirect('back');
+};

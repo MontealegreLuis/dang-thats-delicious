@@ -1,0 +1,16 @@
+extends layout
+
+block content
+    .container
+        h2 Edit your account
+        .row
+            .col-12
+                .card.p-3
+                    form(action='/account' method="post")
+                        .form-group
+                            label(for="name") Name
+                            input(name="name" id="name" placeholder="Your name" class="form-control" value=user.name)
+                        .form-group
+                            label(for="email") Email
+                            textarea(name="email" id="email" placeholder="Your email address" class="form-control")= user.email
+                        input(type="submit" value="Update My Account" class="btn btn-secondary btn-block")
