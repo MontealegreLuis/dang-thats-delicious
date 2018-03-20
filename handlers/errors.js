@@ -8,6 +8,12 @@ exports.errorHandler = (fn) => {
     };
 };
 
+exports.notFound = (request, response, next) => {
+    const error = new Error('Not Found');
+    error.status = 404;
+    next(error);
+};
+
 /**
  * MongoDB Validation Error Handler
  * Detect if there are mongodb validation errors that we can nicely show via flash messages

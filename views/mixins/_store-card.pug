@@ -4,7 +4,7 @@ mixin storeCard(store = {})
             img(src=`/uploads/${store.photo || 'store.png'}` class="card-img-top")
             .card-body
                 h2.card-title
-                    a(href=`/store/${store.slug}`) #{store.name}
+                    a(href=`/stores/${store.slug}`) #{store.name}
                 p(class="card-text")= store.description.split(' ').slice(0, 25).join(' ')
                 a(href=`/stores/${store._id}/edit` class="btn btn-primary")
                     span(class="fa fa-pencil")

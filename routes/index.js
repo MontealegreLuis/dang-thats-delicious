@@ -23,5 +23,6 @@ router.post(
     errorHandler(storeController.resize),
     errorHandler(storeController.updateStore)
 );
+router.get('/stores/:slug', errorHandler(storeController.viewStore));
 
 module.exports = router;

@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    .hero-store
+        img(src=`/uploads/${store.photo || 'store.png'}` class="store-image")
+        h2.store-title #{store.name}
+    .store-details.store-inner
+        img.store-map(src=h.staticMap(store.location.coordinates))
+        p.store-location= store.location.address
+        p= store.description
+
+        if store.tags
+            ul.tags
+                each tag in store.tags
+                    li.tag
+                        a.tag-link(href=`/tags/${tag}`)
+                            span.tag-text ##{tag}

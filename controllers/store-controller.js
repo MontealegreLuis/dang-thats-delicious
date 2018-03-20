@@ -63,3 +63,11 @@ exports.updateStore = async (request, response) => {
     );
     response.redirect(`/stores/${store._id}/edit`);
 };
+
+exports.viewStore = async (request, response, next) => {
+    const store = await Store.findOne({slug: request.params.slug});
+
+    if (!store) return next();
+
+    response.render('store', {store, title: store.name});
+};
