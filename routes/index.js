@@ -23,9 +23,14 @@ router.post(
     errorHandler(storeController.resize),
     errorHandler(storeController.saveStore)
 );
-router.get('/stores/:id/edit', errorHandler(storeController.editStore));
+router.get(
+    '/stores/:id/edit',
+    authController.isLoggedIn,
+    errorHandler(storeController.editStore)
+);
 router.post(
     '/stores/:id/edit',
+    authController.isLoggedIn,
     storeController.upload,
     errorHandler(storeController.resize),
     errorHandler(storeController.updateStore)

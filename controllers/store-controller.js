@@ -47,8 +47,15 @@ exports.viewStores = async (request, response) => {
     response.render('stores', {title: 'Stores', stores});
 };
 
+const confirmOwner = (store, author) => {
+    if (!store.author.equals(author._id)) throw Error('You must own a store in order to edit it');
+};
+
 exports.editStore = async (request, response) => {
     const store = await Store.findById(request.params.id);
+
+    confirmOwner(store, request.user);
+
     response.render('edit-store', {title: `Edit ${store.name}`, store});
 };
 
