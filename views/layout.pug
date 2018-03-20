@@ -43,11 +43,16 @@ html
                         a(class="nav-link" href="/tags")
                             span(class="fa fa-tag")
                             | Tags
-                span(class="navbar-text")
-                    a(href="/register") Register
-                span(class="navbar-text")
-                    span(class="fa fa-user")
-                    a(href="/login") Login
+                if !user
+                    span(class="navbar-text")
+                        a(href="/register") Register
+                    span(class="navbar-text")
+                        span(class="fa fa-user")
+                        a(href="/login") Login
+                else
+                    span(class="navbar-text")
+                        span(class="fa fa-sign-out")
+                        a(href="/logout") Logout
 
         block messages
             if locals.flashes
