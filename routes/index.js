@@ -11,9 +11,14 @@ const authController = require('../controllers/auth-controller');
 
 router.get('/', errorHandler(storeController.viewStores));
 router.get('/stores', errorHandler(storeController.viewStores));
-router.get('/stores/add', storeController.addStore);
+router.get(
+    '/stores/add',
+    authController.isLoggedIn,
+    storeController.addStore
+);
 router.post(
     '/stores/add',
+    authController.isLoggedIn,
     storeController.upload,
     errorHandler(storeController.resize),
     errorHandler(storeController.saveStore)

@@ -35,10 +35,11 @@ html
                         a(class="nav-link" href="/stores")
                             span(class="fa fa-home")
                             | Stores
-                    li(class="nav-item")
-                        a(class="nav-link" href="/stores/add")
-                            span(class="fa fa-plus")
-                            | Add
+                    if user
+                        li(class="nav-item")
+                            a(class="nav-link" href="/stores/add")
+                                span(class="fa fa-plus")
+                                | Add
                     li(class="nav-item")
                         a(class="nav-link" href="/tags")
                             span(class="fa fa-tag")
