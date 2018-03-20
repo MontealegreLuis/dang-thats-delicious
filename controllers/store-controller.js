@@ -36,6 +36,7 @@ exports.resize = async (request, response, next) => {
 };
 
 exports.saveStore = async (request, response) => {
+    request.body.author = request.user._id;
     const store = new Store(request.body);
     await store.save();
     response.redirect('/');
