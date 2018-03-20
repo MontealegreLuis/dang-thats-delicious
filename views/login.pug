@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_login-form
+include mixins/_forgot-password-form
 
 block content
     .container
@@ -9,3 +10,8 @@ block content
             .col-12
                 .card.p-3
                     +loginForm()
+        h2.mt-3 Forgot my password
+        .row
+            .col-12
+                .card.p-3
+                    +forgotPasswordForm()
