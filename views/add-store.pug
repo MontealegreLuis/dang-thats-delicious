@@ -5,6 +5,9 @@ include mixins/_store-form
 block content
     .container
         h2= title
-        form(action="/stores/add" method="post" enctype="multipart/form-data")
-            +storeForm(store)
-            input(type="submit" class="btn btn-secondary mt-3" value="Add store")
+        .row
+            .col-12
+                .card.p-3
+                    form(action="/stores/add" method="post" enctype="multipart/form-data")
+                        +storeForm(store)
+                        input(type="submit" class="btn btn-secondary btn-block mt-3" value="Add store")
