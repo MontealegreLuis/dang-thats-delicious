@@ -1,0 +1,11 @@
+extends layout
+
+include mixins/_login-form
+
+block content
+    .container
+        h2 Login
+        .row
+            .col-12
+                .card.p-3
+                    +loginForm()

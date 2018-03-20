@@ -36,3 +36,7 @@ exports.registerUser = async (request, response, next) => {
     await register(user, request.body.password);
     next();
 };
+
+exports.showLoginForm = (request, response) => {
+    response.render('login', {title: 'Login'});
+};
