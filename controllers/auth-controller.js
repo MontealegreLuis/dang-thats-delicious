@@ -6,6 +6,7 @@ const crypto = require('crypto');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const promisify = require('es6-promisify');
+const mail = require('../handlers/mail');
 
 exports.login = passport.authenticate('local', {
     failureRedirect: '/login',
@@ -38,6 +39,13 @@ exports.forgotPassword = async (request, response) => {
     user.resetPasswordExpires = Date.now() + 3600000;
     await user.save();
 
+    const resetURL = `http://${request.headers.host}/account/reset/${user.resetPasswordToken}`;
+    await mail.send({
+        user,
+        subject: 'Password reset',
+        resetURL,
+        filename: 'password-reset'
+    });
     request.flash('success', 'You have been emailed a password with a reset link');
     response.redirect('/login');
 };
