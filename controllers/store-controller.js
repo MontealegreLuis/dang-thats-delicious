@@ -18,10 +18,6 @@ const multerOptions = {
     }
 };
 
-exports.homePage = (request, response) => {
-    response.render('hello');
-};
-
 exports.addStore = (request, response) => {
     response.render('add-store', {title: 'Add a store'});
 };
