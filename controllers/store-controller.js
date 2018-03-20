@@ -71,3 +71,9 @@ exports.viewStore = async (request, response, next) => {
 
     response.render('store', {store, title: store.name});
 };
+
+exports.viewStoresByTag = async (request, response) => {
+    const tags = await Store.tagsSummary();
+    const currentTag = request.params.tag;
+    response.render('tag', {tags, title: 'Tags', currentTag});
+};
