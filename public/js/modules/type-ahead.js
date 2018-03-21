@@ -2,6 +2,7 @@
  * This source file is subject to the license that is bundled with this package in the file LICENSE.
  */
 const axios = require('axios');
+const purify = require('dompurify');
 
 function typeAhead(search) {
     if (!search) return;
@@ -16,12 +17,15 @@ function typeAhead(search) {
         }
 
         searchResults.style.display = 'block';
-        searchResults.innerHTML = '';
 
         axios
             .get(`/api/search?q=${this.value}`)
             .then(response => {
-                if (response.data.length) searchResults.innerHTML = searchResultsHTML(response.data);
+                if (response.data.length) {
+                    searchResults.innerHTML = purify.sanitize(searchResultsHTML(response.data));
+                    return;
+                }
+                searchResults.innerHTML = purify.sanitize(`No results for ${this.value} found!`);
             })
             .catch(error => console.error(error))
         ;
