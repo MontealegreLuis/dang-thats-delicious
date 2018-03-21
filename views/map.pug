@@ -1,0 +1,10 @@
+extends layout
+
+block content
+    .container
+        h2= title
+        .map
+            .autocomplete.mb-2
+                input.autocomplete-input(placeholder="Search for anything" name="geolocate" class="form-control")
+            #map
+                p Loading map...

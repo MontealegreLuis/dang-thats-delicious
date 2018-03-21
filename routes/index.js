@@ -67,7 +67,9 @@ router.post(
     errorHandler(authController.updatePassword)
 );
 
-
 router.get('/api/search', errorHandler(storeController.searchStores));
+
+router.get('/api/stores/near', errorHandler(storeController.mapStores));
+router.get('/map', storeController.showMap);
 
 module.exports = router;

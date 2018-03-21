@@ -6,6 +6,8 @@ import '../sass/style.sass';
 import {$, $$} from './modules/bling';
 import autocomplete from './modules/autocomplete';
 import typeAhead from './modules/type-ahead';
+import makeMap from './modules/map';
 
 autocomplete($('#address'), $('#lat'), $('#lng'));
 typeAhead($('.search'));
+makeMap($('#map'));
