@@ -44,6 +44,11 @@ html
                         a(class="nav-link" href="/tags")
                             span(class="fa fa-tag pr-1")
                             | Tags
+
+                .search
+                    input(class="search-input" type="search" name="search" placeholder="Search" aria-label="Search")
+                    .search-results
+
                 if !user
                     span(class="navbar-text")
                         span(class="fa fa-user-plus pr-1")

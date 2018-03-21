@@ -5,5 +5,7 @@ import '../sass/style.sass';
 
 import {$, $$} from './modules/bling';
 import autocomplete from './modules/autocomplete';
+import typeAhead from './modules/type-ahead';
 
 autocomplete($('#address'), $('#lat'), $('#lng'));
+typeAhead($('.search'));
