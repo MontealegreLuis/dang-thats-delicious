@@ -67,4 +67,7 @@ router.post(
     errorHandler(authController.updatePassword)
 );
 
+
+router.get('/api/search', errorHandler(storeController.searchStores));
+
 module.exports = router;

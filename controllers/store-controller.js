@@ -90,3 +90,14 @@ exports.viewStoresByTag = async (request, response) => {
 
     response.render('tag', {tags, title: 'Tags', currentTag, stores});
 };
+
+exports.searchStores = async (request, response) => {
+    const stores = await Store.find(
+        {$text: {$search: request.query.q}},
+        {score: {$meta: 'textScore'}}
+    ).sort(
+        {score: {$meta: 'textScore'}}
+    ).limit(5);
+
+    response.json(stores);
+};
