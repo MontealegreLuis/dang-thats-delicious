@@ -7,7 +7,7 @@ block content
     .store-details.store-inner
         img.store-map(src=h.staticMap(store.location.coordinates))
         p.store-location= store.location.address
-        p= store.description
+        p.mt-5= store.description
 
         if store.tags
             ul.tags
