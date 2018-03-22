@@ -62,11 +62,13 @@ html
                         a(href="/login") Login
                 else
                     span.navbar-text.pr-2
-                        span.fa.fa-heart.pr-1
-                        strong.heart-count #{user.hearts && user.hearts.length}
+                        a(href="/hearts")
+                            span.fa.fa-heart.pr-1
+                            strong.heart-count #{user.hearts && user.hearts.length}
                     span(class="navbar-text")
-                        span(class="fa fa-sign-out pr-1")
-                        a(href="/logout") Logout
+                        a(href="/logout")
+                            span(class="fa fa-sign-out pr-1")
+                            | Logout
                     span(class="navbar-text")
                         a(href="/account" class="pl-2")
                             img(src=user.gravatar + '&d=retro')

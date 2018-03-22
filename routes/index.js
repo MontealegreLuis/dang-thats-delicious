@@ -66,12 +66,15 @@ router.post(
     authController.confirmPasswords,
     errorHandler(authController.updatePassword)
 );
+router.get('/map', storeController.showMap);
+router.get(
+    '/hearts',
+    authController.isLoggedIn,
+    errorHandler(storeController.showHearts)
+);
 
 router.get('/api/search', errorHandler(storeController.searchStores));
-
 router.get('/api/stores/near', errorHandler(storeController.mapStores));
-router.get('/map', storeController.showMap);
-
 router.post(
     '/api/stores/:id/heart',
     authController.isLoggedIn,
