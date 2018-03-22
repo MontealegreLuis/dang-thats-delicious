@@ -6,7 +6,14 @@ mixin storeCard(store = {})
                 h2.card-title
                     a(href=`/stores/${store.slug}`) #{store.name}
                 p(class="card-text")= store.description.split(' ').slice(0, 25).join(' ')
+                if user
+                    form.heart(method="post" action=`/api/stores/${store._id}/heart`)
+                        button.btn.btn-primary
+                            - const heartStrings = user.hearts.map(id => id.toString())
+                            - const heartClass = heartStrings.includes(store._id.toString()) ? 'text-danger' : ''
+                            span.fa.fa-heart.pr-2(class=heartClass)
+                            | Heart
                 if user && store.author.equals(user._id)
                     a(href=`/stores/${store._id}/edit` class="btn btn-primary")
-                        span(class="fa fa-pencil")
+                        span(class="fa fa-pencil pr-2")
                         | Edit

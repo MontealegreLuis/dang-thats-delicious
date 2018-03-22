@@ -61,6 +61,9 @@ html
                         span(class="fa fa-user pl-2 pr-1")
                         a(href="/login") Login
                 else
+                    span.navbar-text.pr-2
+                        span.fa.fa-heart.pr-1
+                        strong #{user.hearts && user.hearts.length}
                     span(class="navbar-text")
                         span(class="fa fa-sign-out pr-1")
                         a(href="/logout") Logout
