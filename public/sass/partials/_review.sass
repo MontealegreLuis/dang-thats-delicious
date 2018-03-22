@@ -1,0 +1,52 @@
+.review
+  background: white
+  border: 1px solid lighten(grey, 40%)
+  border-bottom: 0
+  border-bottom: 1px solid lighten(grey, 40%)
+  margin-bottom: 2rem
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1)
+  position: relative
+  padding-left: 5px
+  &:before
+    width: 5px
+    left: 0
+    content: ''
+    display: block
+    background: linear-gradient(0, #48ded4 0%, #a026bf 20%, #e82c75 60%, #FFC40E 85%, #48ded4 95%)
+    position: absolute
+    height: 100%
+    background-attachment: fixed
+
+.review-header
+    border-bottom: 1px solid lighten(grey, 40%)
+    display: flex
+    & > *
+      border-right: 1px solid lighten(grey, 40%)
+      padding: 0.2rem
+      display: flex
+      align-items: center
+      flex: 1
+      justify-content: center
+      &:last-child
+        border-right: 0
+
+.review-author
+  justify-content: flex-start
+  padding-left: 2rem
+  display: flex
+
+.review-author-avatar
+    margin-right: 2rem
+
+.review-time
+  font-size: 1.2rem
+  color: lighten(black, 60%)
+
+.review-stars
+    color: #FFC40E
+
+.review-body
+    padding: 2rem
+
+.review-text
+  white-space: pre-wrap

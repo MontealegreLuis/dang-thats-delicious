@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_store-review
+include mixins/_review
 
 block content
     .hero-store
@@ -20,3 +21,8 @@ block content
 
         if user
             +storeReview(store)
+
+        if store.reviews
+            .review
+                each review in store.reviews
+                    +review(review)
