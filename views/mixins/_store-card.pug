@@ -8,7 +8,7 @@ mixin storeCard(store = {})
                 p(class="card-text")= store.description.split(' ').slice(0, 25).join(' ')
                 if user
                     form.heart(method="post" action=`/api/stores/${store._id}/heart`)
-                        button.btn.btn-primary
+                        button.btn.btn-primary(name="heart")
                             - const heartStrings = user.hearts.map(id => id.toString())
                             - const heartClass = heartStrings.includes(store._id.toString()) ? 'text-danger' : ''
                             span.fa.fa-heart.pr-2(class=heartClass)

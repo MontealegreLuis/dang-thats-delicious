@@ -72,6 +72,10 @@ router.get('/api/search', errorHandler(storeController.searchStores));
 router.get('/api/stores/near', errorHandler(storeController.mapStores));
 router.get('/map', storeController.showMap);
 
-router.post('/api/stores/:id/heart', errorHandler(storeController.heartStore));
+router.post(
+    '/api/stores/:id/heart',
+    authController.isLoggedIn,
+    errorHandler(storeController.heartStore)
+);
 
 module.exports = router;
