@@ -142,3 +142,8 @@ exports.showHearts = async (request, response) => {
 
     response.render('stores', {title: 'Hearted stores', stores});
 };
+
+exports.topStores = async (request, response) => {
+    const stores = await Store.topStores();
+    response.render('top-stores', {title: 'Top Stores', stores});
+};

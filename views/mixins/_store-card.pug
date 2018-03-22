@@ -17,3 +17,6 @@ mixin storeCard(store = {})
                     a(href=`/stores/${store._id}/edit` class="btn btn-primary")
                         span(class="fa fa-pencil pr-2")
                         | Edit
+                if store.reviews
+                    a(href=`/stores/${store._id}/edit` class="btn btn-primary")
+                        span.fa.fa-comment= store.reviews.length
