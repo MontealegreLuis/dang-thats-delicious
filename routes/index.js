@@ -12,6 +12,7 @@ const reviewController = require('../controllers/review-controller');
 
 router.get('/', errorHandler(storeController.viewStores));
 router.get('/stores', errorHandler(storeController.viewStores));
+router.get('/stores/page/:page', errorHandler(storeController.viewStores));
 router.get(
     '/stores/add',
     authController.isLoggedIn,

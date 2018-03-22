@@ -1,6 +1,7 @@
 extends layout
 
 include mixins/_store-card
+include mixins/_pagination
 
 block content
     .container
@@ -8,3 +9,6 @@ block content
         .row
             each store in stores
                 +storeCard(store)
+        .row
+            .col-12.mt-4
+                +pagination(page, pages, count)

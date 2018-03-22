@@ -24,6 +24,7 @@ exports.addStore = (request, response) => {
 };
 
 exports.upload = multer(multerOptions).single('photo');
+
 exports.resize = async (request, response, next) => {
     if (!request.file) return next();
 
@@ -44,8 +45,22 @@ exports.saveStore = async (request, response) => {
 };
 
 exports.viewStores = async (request, response) => {
-    const stores = await Store.find();
-    response.render('stores', {title: 'Stores', stores});
+    const page = Number(request.params.page) || 4;
+    const limit = 4;
+    const skip = (page * limit) - limit;
+
+    const storesPromise = Store.find().skip(skip).limit(limit).sort({created: 'desc'});
+    const countPromise = Store.count();
+
+    const [stores, count] = await Promise.all([storesPromise, countPromise]);
+    const pages = Math.ceil(count / limit);
+
+    if (!stores.length && skip) {
+        request.flash('info', `Hey! You asked for page ${page}. But that doesn't exist. So I put you in page ${pages}`);
+        response.redirect(`/stores/page/${pages}`);
+    } else {
+        response.render('stores', {title: 'Stores', stores, page, pages, count});
+    }
 };
 
 const confirmOwner = (store, author) => {

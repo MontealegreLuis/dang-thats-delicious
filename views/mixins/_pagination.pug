@@ -1,0 +1,17 @@
+mixin pagination(page, pages, count)
+    ul.pagination.justify-content-center.pagination-lg
+        if page > 1
+            li.page-item
+                a.page-link(href=`/stores/page/${page - 1}` aria-label="Previous")
+                    span(aria-hidden="true") &laquo;
+                    span(class="sr-only") Previous
+        - const pageNumbers = [...Array(pages).keys()]
+        each number in pageNumbers
+            - const activeClass = number + 1 === page ? 'active' : ''
+            li.page-item(class=`${activeClass}`)
+                a.page-link(href=`/stores/page/${number + 1}`)= number + 1
+        if page < pages
+            li.page-item
+                a.page-link(href=`/stores/page/${page + 1}` aria-label="Next")
+                    span(aria-hidden="true") &raquo;
+                    span.sr-only Next
