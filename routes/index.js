@@ -8,6 +8,7 @@ const {errorHandler} = require('../handlers/errors');
 const storeController = require('../controllers/store-controller');
 const userController = require('../controllers/user-controller');
 const authController = require('../controllers/auth-controller');
+const reviewController = require('../controllers/review-controller');
 
 router.get('/', errorHandler(storeController.viewStores));
 router.get('/stores', errorHandler(storeController.viewStores));
@@ -71,6 +72,11 @@ router.get(
     '/hearts',
     authController.isLoggedIn,
     errorHandler(storeController.showHearts)
+);
+router.post(
+    '/reviews/:id',
+    authController.isLoggedIn,
+    errorHandler(reviewController.reviewStore)
 );
 
 router.get('/api/search', errorHandler(storeController.searchStores));

@@ -1,5 +1,7 @@
 extends layout
 
+include mixins/_store-review
+
 block content
     .hero-store
         img(src=`/uploads/${store.photo || 'store.png'}` class="store-image")
@@ -15,3 +17,6 @@ block content
                     li.tag
                         a.tag-link(href=`/tags/${tag}`)
                             span.tag-text ##{tag}
+
+        if user
+            +storeReview(store)
