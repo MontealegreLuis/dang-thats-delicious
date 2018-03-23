@@ -45,7 +45,7 @@ exports.saveStore = async (request, response) => {
 };
 
 exports.viewStores = async (request, response) => {
-    const page = Number(request.params.page) || 4;
+    const page = Number(request.params.page) || 1;
     const limit = 4;
     const skip = (page * limit) - limit;
 
