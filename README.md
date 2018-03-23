@@ -38,7 +38,7 @@ $ npm run sample
 Start the application with the following command and open a browser in [http://localhost:7777](http://localhost:7777)
 
 ```
-$npm start
+$npm run dev
 ```
 
 See `package.json` for more commands.
