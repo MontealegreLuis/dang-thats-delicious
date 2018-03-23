@@ -1,0 +1,16 @@
+{
+  "dotenv": ".now.env",
+  "files": [
+    "./controllers",
+    "./data",
+    "./handlers",
+    "./models",
+    "./public/dist",
+    "./public/uploads",
+    "./routes",
+    "./views",
+    "./app.js",
+    "./helpers.js",
+    "./start.js"
+  ]
+}
